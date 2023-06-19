@@ -25,6 +25,7 @@ class Counter {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center) {
             val counter = remember { mutableStateOf(0) }
+
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
@@ -35,13 +36,13 @@ class Counter {
                 .height(100.dp))
 
             AddButton(counter.value) {
-                counter.value++
+                counter.value = it + 1
             }
         }
     }
 
     @Composable
-    private fun AddButton(counter: Int, updateCounter: (Int) -> Unit) {
+    private fun AddButton(counter: Int = 0, updateCounter: (Int) -> Unit) {
         Box(modifier = Modifier.size(100.dp)) {
             Button(
                 modifier = Modifier
@@ -50,8 +51,7 @@ class Counter {
                 shape = CircleShape,
                 onClick = {
                     updateCounter(counter)
-                    Log.d("Button tapped", "Ui: $counter")
-
+                    Log.d("Button tapped", "Ui: ${counter}")
                 }) {
                 Text(text = "Tap")
             }
