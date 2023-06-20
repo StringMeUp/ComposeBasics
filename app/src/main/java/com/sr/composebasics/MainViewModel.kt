@@ -5,28 +5,27 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor() : ViewModel() {
 
-    private var _total = MutableLiveData("")
-    val total = _total
+    private var _billAmount = MutableLiveData("")
+    val billAmount = _billAmount
 
-    private var _splitCount = mutableStateOf(0)
+    private var _splitCount = mutableStateOf(1)
     var splitCount = _splitCount
 
     private var _percentage = mutableStateOf(0F)
     val percentage = _percentage
 
-    var _tip = mutableStateOf(0.0)
-    var tip = _tip
+    private var _tip = mutableStateOf(0.0)
+    val tip = _tip
 
     fun setTotal(text: String) {
         viewModelScope.launch {
-            _total.value = text
+            _billAmount.value = text
         }
     }
 
@@ -45,12 +44,12 @@ class MainViewModel @Inject constructor() : ViewModel() {
     }
 
     fun calculatePercentage() {
-        val tValue = total.value?.toIntOrNull()
-        val pValue = percentage.value.toDouble()
-        if (tValue != null && pValue > 0.0) {
+        val bill = billAmount.value?.toIntOrNull()
+        val percentage = percentage.value.toDouble()
+        if (bill != null && percentage > 0.0) {
             _tip.value =
-                if (splitCount.value > 0) ((pValue / 100) * tValue) / splitCount.value
-                else ((pValue / 100) * tValue)
+                if (splitCount.value > 1) (bill * percentage / 100) / splitCount.value
+                else ((percentage / 100) * bill)
         } else {
             tip.value = 0.0
         }

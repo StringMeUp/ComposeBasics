@@ -45,7 +45,7 @@ fun Header(viewModel: MainViewModel = viewModel()) {
                 color = Color.Blue,
                 fontSize = 14.sp)
             Text(textAlign = TextAlign.Center,
-                text = viewModel.tip.value.toString(),
+                text = "%.2f".format(viewModel.tip.value),
                 modifier = Modifier.padding(bottom = 32.dp),
                 color = Color.Black,
                 fontSize = 24.sp)
@@ -65,7 +65,7 @@ fun Body(viewModel: MainViewModel = viewModel()) {
             Box(modifier = Modifier.wrapContentHeight(), contentAlignment = Alignment.TopStart) {
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
-                    value = viewModel.total.observeAsState().value.toString(),
+                    value = viewModel.billAmount.observeAsState().value.toString(),
                     maxLines = 1,
                     leadingIcon = {
                         Icon(imageVector = ImageVector.vectorResource(id = R.drawable.ic_money),
@@ -168,7 +168,6 @@ fun SplitSection(viewModel: MainViewModel = viewModel()) {
                 end.linkTo(slider.end)
             },
             fontSize = 20.sp)
-
     }
 }
 
