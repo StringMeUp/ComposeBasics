@@ -77,19 +77,14 @@ fun Body(viewModel: MainViewModel = viewModel()) {
                         imeAction = ImeAction.Done,
                         keyboardType = KeyboardType.Number),
                     onValueChange = {
-
                         viewModel.setTotal(it)
                         viewModel.calculatePercentage()
-
                     })
-
-
             }
 
             Spacer(modifier = Modifier
                 .fillMaxWidth()
                 .height(24.dp))
-
             SplitSection()
         }
     }

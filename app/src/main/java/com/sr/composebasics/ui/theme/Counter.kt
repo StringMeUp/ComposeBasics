@@ -16,7 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 class Counter {
-
     @Preview(showBackground = true)
     @Composable
     fun Ui() {
