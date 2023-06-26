@@ -35,7 +35,7 @@ class MainViewModel @Inject constructor() : ViewModel() {
     }
 
     fun subSplit() {
-        if (splitCount.value != 0) _splitCount.value = _splitCount.value - 1
+        if (splitCount.value > 1) _splitCount.value = _splitCount.value - 1
         calculatePercentage()
     }
 

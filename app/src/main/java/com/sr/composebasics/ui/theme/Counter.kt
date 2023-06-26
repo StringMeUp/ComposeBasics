@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 
 class Counter {
 
-    @Preview
+    @Preview(showBackground = true)
     @Composable
     fun Ui() {
         Column(
